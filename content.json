@@ -1,11 +1,25 @@
 {
-  "skills": ["Python", "C++", "Java", "SQL", "PyTorch", "TensorFlow", "Hugging Face", "Flask", "Docker"],
-  "projects": [
-    { "title": "Bengali Sentiment Analysis", "desc": "Fine-tuned LLMs & ML models on Bengali reviews dataset.", "github": "https://github.com/pramanik-souvik/Bengali-Sentiment", "live": "" },
-    { "title": "Quantum-Inspired Transfer Learning", "desc": "Hybrid deep learning + PennyLane quantum head.", "github": "https://github.com/pramanik-souvik/Quantum-ML", "live": "" },
-    { "title": "Bangla QnA Agent", "desc": "LLM-powered question answering on Bengali history dataset.", "github": "https://github.com/pramanik-souvik/Bangla-QnA", "live": "" }
+  "skills": [
+    {"name":"Python","level":"95%"},
+    {"name":"C++","level":"90%"},
+    {"name":"C","level":"85%"},
+    {"name":"Java","level":"85%"},
+    {"name":"SQL","level":"80%"},
+    {"name":"PyTorch","level":"90%"},
+    {"name":"TensorFlow","level":"85%"},
+    {"name":"Hugging Face","level":"80%"},
+    {"name":"Flask","level":"85%"},
+    {"name":"Docker","level":"75%"},
+    {"name":"HTML","level":"80%"},
+    {"name":"CSS","level":"75%"},
+    {"name":"JavaScript","level":"80%"}
   ],
-  "research": [
-    { "title": "Coming Soon", "desc": "I will update this section with my publications." }
+  "projects":[
+    {"title":"Bengali Sentiment Analysis","desc":"Fine-tuned LLMs & ML models on Bengali reviews dataset.","github":"https://github.com/pramanik-souvik/Bengali-Sentiment","live":""},
+    {"title":"Quantum-Inspired Transfer Learning","desc":"Hybrid deep learning + PennyLane quantum head.","github":"https://github.com/pramanik-souvik/Quantum-ML","live":""},
+    {"title":"Bangla QnA Agent","desc":"LLM-powered question answering on Bengali history dataset.","github":"https://github.com/pramanik-souvik/Bangla-QnA","live":""}
+  ],
+  "research":[
+    {"title":"Coming Soon","desc":"I will update this section with my publications."}
   ]
 }
