@@ -4,80 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Souvik Pramanik | Portfolio</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9f9f9;
-      color: #333;
-      scroll-behavior: smooth;
-    }
-    header {
-      background: #0d1117;
-      color: #fff;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header nav a {
-      color: #fff;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    header nav a:hover {
-      color: #58a6ff;
-    }
-    section {
-      padding: 4rem 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
-    h1, h2 {
-      color: #0d1117;
-    }
-    .skills, .projects, .contact-icons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .skill, .project {
-      background: white;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      flex: 1 1 250px;
-    }
-    .contact-icons a {
-      text-decoration: none;
-      font-size: 1.2rem;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      background: #0d1117;
-      color: #fff;
-      transition: 0.3s;
-    }
-    .contact-icons a:hover {
-      background: #58a6ff;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #0d1117;
-      color: #fff;
-      margin-top: 2rem;
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h2>Souvik Pramanik</h2>
+    <a href="#" class="logo">Souvik</a>
     <nav>
-      <a href="#about">About</a>
+      <a href="#home" class="active">Home</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#research">Research</a>
@@ -85,75 +19,53 @@
     </nav>
   </header>
 
-  <section id="home">
-    <h1>👋 Hi, I'm Souvik</h1>
-    <p>
-      🎓 AI Researcher | 💻 Developer | 📊 Data Science Enthusiast <br>
-      I explore <b>NLP, LLMs, VLMs, Computer Vision, and Quantum Machine Learning</b>.  
-      Passionate about building intelligent, ethical, and impactful AI systems.
-    </p>
-  </section>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      I’m passionate about advancing Artificial Intelligence through research and applications.  
-      Currently working on projects in <b>LLM fine-tuning, Quantum-Inspired ML, and Vision-Language Models</b>.  
-      Open to collaboration in AI research and open-source contributions.
-    </p>
+  <section class="home" id="home">
+    <div class="home-img">
+      <img src="your-photo.jpg" alt="Souvik Pramanik">
+    </div>
+    <div class="home-content">
+      <h1>Hi, I'm <span>Souvik Pramanik</span></h1>
+      <h3 class="typing-text">I'm a <span></span></h3>
+      <p>AI Researcher | Developer | AI & Data Science Enthusiast. Exploring NLP, LLMs, VLMs, Computer Vision & Quantum ML.</p>
+      <div class="social-icons">
+        <a href="https://linkedin.com/in/yourprofile"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/pramanik-souvik"><i class="fa-brands fa-github"></i></a>
+        <a href="https://twitter.com/yourprofile"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://facebook.com/yourprofile"><i class="fa-brands fa-facebook"></i></a>
+      </div>
+      <a href="#contact" class="btn">Hire Me</a>
+    </div>
   </section>
 
   <section id="skills">
     <h2>Skills</h2>
-    <div class="skills">
-      <div class="skill">Python</div>
-      <div class="skill">C++</div>
-      <div class="skill">Java</div>
-      <div class="skill">SQL</div>
-      <div class="skill">PyTorch</div>
-      <div class="skill">TensorFlow</div>
-      <div class="skill">Hugging Face</div>
-      <div class="skill">Flask</div>
-      <div class="skill">Docker</div>
-    </div>
+    <div id="skills-container" class="skills"></div>
   </section>
 
   <section id="projects">
     <h2>Projects</h2>
-    <div class="projects">
-      <div class="project">
-        <h3>Bengali Sentiment Analysis</h3>
-        <p>Fine-tuned LLMs & ML models on Bengali reviews dataset.</p>
-      </div>
-      <div class="project">
-        <h3>Quantum-Inspired Transfer Learning</h3>
-        <p>Hybrid deep learning + PennyLane quantum head for AI research.</p>
-      </div>
-      <div class="project">
-        <h3>Bangla QnA Agent</h3>
-        <p>LLM-powered question answering on Bengali history dataset.</p>
-      </div>
-    </div>
+    <div id="projects-container" class="projects"></div>
   </section>
 
   <section id="research">
     <h2>Research & Publications</h2>
-    <p>📝 Coming soon — I will update with my research papers and publications.</p>
+    <div id="research-container" class="research"></div>
   </section>
 
   <section id="contact">
     <h2>Contact Me</h2>
-    <div class="contact-icons">
-      <a href="mailto:your.email@example.com">📧 Email</a>
-      <a href="https://linkedin.com/in/yourprofile">💼 LinkedIn</a>
-      <a href="https://twitter.com/yourprofile">🐦 Twitter</a>
-      <a href="https://facebook.com/yourprofile">📘 Facebook</a>
-      <a href="https://github.com/pramanik-souvik">💻 GitHub</a>
+    <div class="social-icons">
+      <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://linkedin.com/in/yourprofile"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/pramanik-souvik"><i class="fab fa-github"></i></a>
+      <a href="https://facebook.com/yourprofile"><i class="fab fa-facebook"></i></a>
     </div>
   </section>
 
   <footer>
     <p>© 2025 Souvik Pramanik | Built with ❤ and hosted on GitHub Pages</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

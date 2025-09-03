@@ -1,0 +1,11 @@
+{
+  "skills": ["Python", "C++", "Java", "SQL", "PyTorch", "TensorFlow", "Hugging Face", "Flask", "Docker"],
+  "projects": [
+    { "title": "Bengali Sentiment Analysis", "desc": "Fine-tuned LLMs & ML models on Bengali reviews dataset." },
+    { "title": "Quantum-Inspired Transfer Learning", "desc": "Hybrid deep learning + PennyLane quantum head." },
+    { "title": "Bangla QnA Agent", "desc": "LLM-powered question answering on Bengali history dataset." }
+  ],
+  "research": [
+    { "title": "Coming Soon", "desc": "I will update this section with my publications." }
+  ]
+}
