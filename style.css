@@ -10,18 +10,18 @@
 }
 
 :root{
-  --bg-color: #0d1117;
-  --text-color: #fff;
-  --accent-color: #00FF00;
-  --card-bg: #161616;
+  --bg-color: #000000;          /* Black background */
+  --text-color: #00FF00;        /* Green text */
+  --accent-color: #00FF00;      /* Green accents for buttons, hover */
+  --card-bg: #111111;            /* Slightly lighter black for cards */
   --card-shadow: rgba(0,255,0,0.2);
 }
 
 body.light-mode{
-  --bg-color:#fff;
-  --text-color:#1E90FF;
-  --accent-color:#1E90FF;
-  --card-bg:#f0f8ff;
+  --bg-color: #ffffff;           /* White background */
+  --text-color: #1E90FF;         /* Blue text */
+  --accent-color: #1E90FF;       /* Blue accents */
+  --card-bg: #f0f8ff;            /* Light blue-ish card background */
   --card-shadow: rgba(30,144,255,0.2);
 }
 
@@ -206,3 +206,4 @@ footer{
     margin-left:1rem;
   }
 }
+
