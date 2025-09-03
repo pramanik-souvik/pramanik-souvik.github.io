@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    width: 100%;
+    background-color: #0d1117;
+    color: #fff;
+    scroll-behavior: smooth;
+}
+
+/* Header */
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
+}
+
+.logo{
+    font-size: 3rem;
+    color: #b74b4b;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+.logo:hover{
+    transform: scale(1.1);
+}
+
+header nav a{
+    font-size: 1.8rem;
+    color: white;
+    margin-left: 4rem;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s ease;
+}
+
+header nav a:hover,
+header nav a.active{
+    color: #b74b4b;
+    border-bottom: 3px solid #b74b4b;
+}
+
+/* Home Section */
+section{
+    min-height: 100vh;
+    padding: 5rem 5%;
+}
+
+.home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    flex-wrap: wrap;
+}
+
+.home .home-content h1{
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.home .home-content h1 span{
+    color: #b74b4b;
+}
+
+.home-content h3{
+    font-size: 2.5rem;
+    margin: 1rem 0;
+    font-weight: 600;
+}
+
+.home-content p{
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+
+.home-img img{
+    width: 25rem;
+    border-radius: 50%;
+    box-shadow: 0 0 25px #b74b4b;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.home-img img:hover{
+    transform: scale(1.05);
+}
+
+/* Buttons & social icons */
+.btn{
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: transparent;
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    color: #b74b4b;
+    border: 2px solid #b74b4b;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: #b74b4b;
+    color: black;
+    box-shadow: 0 0 25px #b74b4b;
+}
+
+.social-icons{
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.social-icons a{
+    width: 4rem;
+    height: 4rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #b74b4b;
+    border: 2px solid #b74b4b;
+    border-radius: 50%;
+    transition: 0.3s ease;
+}
+
+.social-icons a:hover{
+    background-color: #b74b4b;
+    color: #0d1117;
+    transform: scale(1.2);
+}
+
+/* Skills / Projects / Research sections */
+.skills, .projects, .research{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.skill, .project, .paper{
+    background-color: #161616;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(183,75,75,0.2);
+    transition: 0.3s ease;
+}
+
+.skill:hover, .project:hover, .paper:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px #b74b4b;
+}
+
+/* Footer */
+footer{
+    text-align: center;
+    padding: 2rem;
+    background-color: #0d1117;
+    margin-top: 3rem;
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+/* Responsive */
+@media(max-width: 995px){
+    .home{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .home-img img{
+        width: 50%;
+        margin-top: 2rem;
+    }
+
+    header nav a{
+        margin-left: 2rem;
+    }
+}
