@@ -92,7 +92,7 @@ fetch("content.json")
 particlesJS("particles-js", {
   "particles": {
     "number": { "value": 80 },
-    "color": { "value": ["#00FF00","#1E90FF"] },
+    "color": { "value": ["#00FF00"] },  // Green particles
     "shape": { "type": "circle" },
     "opacity": { "value": 0.5 },
     "size": { "value": 3 },
@@ -104,3 +104,4 @@ particlesJS("particles-js", {
     "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } }
   }
 });
+
