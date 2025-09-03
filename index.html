@@ -8,9 +8,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <a href="#" class="logo">Souvik</a>
-    <nav>
+  <!-- Dark/Light mode toggle -->
+  <div class="theme-toggle" id="theme-toggle">
+    <i class="fas fa-moon"></i>
+  </div>
+
+  <header id="header">
+    <a href="#home" class="logo">Souvik</a>
+    <nav id="navbar">
       <a href="#home" class="active">Home</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
@@ -19,6 +24,7 @@
     </nav>
   </header>
 
+  <!-- Home Section -->
   <section class="home" id="home">
     <div class="home-img">
       <img src="your-photo.jpg" alt="Souvik Pramanik">
@@ -28,30 +34,34 @@
       <h3 class="typing-text">I'm a <span></span></h3>
       <p>AI Researcher | Developer | AI & Data Science Enthusiast. Exploring NLP, LLMs, VLMs, Computer Vision & Quantum ML.</p>
       <div class="social-icons">
-        <a href="https://linkedin.com/in/yourprofile"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="https://github.com/pramanik-souvik"><i class="fa-brands fa-github"></i></a>
-        <a href="https://twitter.com/yourprofile"><i class="fa-brands fa-twitter"></i></a>
-        <a href="https://facebook.com/yourprofile"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://linkedin.com/in/yourprofile"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/pramanik-souvik"><i class="fab fa-github"></i></a>
+        <a href="https://twitter.com/yourprofile"><i class="fab fa-twitter"></i></a>
+        <a href="https://facebook.com/yourprofile"><i class="fab fa-facebook"></i></a>
       </div>
       <a href="#contact" class="btn">Hire Me</a>
     </div>
   </section>
 
+  <!-- Skills Section -->
   <section id="skills">
     <h2>Skills</h2>
     <div id="skills-container" class="skills"></div>
   </section>
 
+  <!-- Projects Section -->
   <section id="projects">
     <h2>Projects</h2>
     <div id="projects-container" class="projects"></div>
   </section>
 
+  <!-- Research Section -->
   <section id="research">
     <h2>Research & Publications</h2>
     <div id="research-container" class="research"></div>
   </section>
 
+  <!-- Contact Section -->
   <section id="contact">
     <h2>Contact Me</h2>
     <div class="social-icons">

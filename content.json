@@ -1,9 +1,9 @@
 {
   "skills": ["Python", "C++", "Java", "SQL", "PyTorch", "TensorFlow", "Hugging Face", "Flask", "Docker"],
   "projects": [
-    { "title": "Bengali Sentiment Analysis", "desc": "Fine-tuned LLMs & ML models on Bengali reviews dataset." },
-    { "title": "Quantum-Inspired Transfer Learning", "desc": "Hybrid deep learning + PennyLane quantum head." },
-    { "title": "Bangla QnA Agent", "desc": "LLM-powered question answering on Bengali history dataset." }
+    { "title": "Bengali Sentiment Analysis", "desc": "Fine-tuned LLMs & ML models on Bengali reviews dataset.", "github": "https://github.com/pramanik-souvik/Bengali-Sentiment", "live": "" },
+    { "title": "Quantum-Inspired Transfer Learning", "desc": "Hybrid deep learning + PennyLane quantum head.", "github": "https://github.com/pramanik-souvik/Quantum-ML", "live": "" },
+    { "title": "Bangla QnA Agent", "desc": "LLM-powered question answering on Bengali history dataset.", "github": "https://github.com/pramanik-souvik/Bangla-QnA", "live": "" }
   ],
   "research": [
     { "title": "Coming Soon", "desc": "I will update this section with my publications." }
