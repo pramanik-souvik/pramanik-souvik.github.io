@@ -1,219 +1,1042 @@
-/* Fonts & Reset */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap');
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: 'Fira Code', monospace;
-  scroll-behavior: smooth;
+/* Your entire CSS from the <style> tag goes here */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
-:root{
-  --bg-color: #000000;          /* Dark mode background */
-  --text-color: #00FF00;        /* Dark mode text */
-  --accent-color: #00FF00;      /* Buttons, hover, accents */
-  --card-bg: #111111;            /* Cards background */
-  --card-shadow: rgba(0,255,0,0.2); /* Shadow for cards */
-  --skill-bg: rgba(0,255,0,0.1);
+.dark-mode {
+    --bg-color: #f0f0f0;
+    --dock-bg: rgba(255, 255, 255, 0.9);
+    --dock-border: rgba(255, 255, 255, 0.5);
+    --text-color: #333;
+    --menu-bg: rgba(255, 255, 255, 0.95);
+    --window-bg: rgba(255, 255, 255, 0.95);
+    /* --icon-bg: linear-gradient(135deg, #6e8efb, #a777e3); */
+    /* --icon-bg: linear-gradient(135deg, #bbb, #333); */
+    /* --icon-bg: #fff; white icons on dark background */
+    --icon-bg: #555;
+
+    /* normal state
+    .dock-item:hover .icon {
+        background: #fff;
+        /* hover state */
+    /* } */ 
+
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --accent-color: #007aff;
 }
 
-body.light-mode{
-  --bg-color: #ffffff;           /* Light mode background */
-  --text-color: #1E90FF;         /* Light mode text */
-  --accent-color: #1E90FF;       /* Buttons, hover, accents */
-  --card-bg: #f0f8ff;            /* Card background */
-  --card-shadow: rgba(30,144,255,0.2);
-  --skill-bg: rgba(30,144,255,0.1);
+:root {
+    --bg-color: #1a1a1a;
+    --dock-bg: rgba(50, 50, 50, 0.9);
+    --dock-border: rgba(100, 100, 100, 0.5);
+    --text-color: #f0f0f0;
+    --menu-bg: rgba(50, 50, 50, 0.95);
+    --window-bg: rgba(40, 40, 40, 0.95);
+    /* --icon-bg: linear-gradient(135deg, #5d7ce0, #8a63c5); */
+    /* --icon-bg: linear-gradient(135deg, #333, #bbb); */
+    /* --icon-bg: #fff; white icons on dark background */
+    --icon-bg: #555;
+
+    /* normal state
+    .dock-item:hover .icon {
+        background: #575656;
+        /* hover state */
+    /* }  */
+
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --accent-color: #0a84ff;
 }
 
-body{
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: all 0.4s ease;
-  position: relative;
-  min-height: 100vh;
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    overflow: hidden;
+    transition: background 0.5s ease;
 }
 
-/* Particles background */
-#particles-js{
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  top: 0;
-  left: 0;
+.desktop {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: url('bg.gif') no-repeat right center;
+    background-size: cover;
 }
 
-/* Theme Toggle */
-.theme-toggle{
-  position: fixed;
-  top: 90px;
-  left: 2%;
-  font-size: 2rem;
-  color: var(--accent-color);
-  cursor: pointer;
-  z-index: 1001;
-  transition: color 0.3s ease;
+.desktop::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    /* slightly dark overlay */
+    pointer-events: none;
 }
 
-/* Header */
-header{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 1rem 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--card-bg);
-  z-index: 1000;
-  transition: background 0.3s ease;
+
+/* Menu Bar */
+.menu-bar {
+    background: var(--menu-bg);
+    backdrop-filter: blur(20px);
+    height: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    font-size: 13px;
+    color: var(--text-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    z-index: 100;
 }
 
-.logo{
-  font-size: 3rem;
-  color: var(--accent-color);
-  font-weight: 800;
-  cursor: pointer;
-  transition: transform 0.3s ease, color 0.3s ease;
+.apple-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
 }
 
-.logo:hover{
-  transform: scale(1.1);
+.apple-logo {
+    font-size: 16px;
 }
 
-header nav a{
-  margin-left: 2rem;
-  color: var(--text-color);
-  font-size: 1.6rem;
-  font-weight: 500;
-  border-bottom: 2px solid transparent;
-  transition: 0.3s ease;
+.menu-items {
+    display: flex;
+    gap: 20px;
 }
 
-header nav a.active,
-header nav a:hover{
-  color: var(--accent-color);
-  border-bottom: 2px solid var(--accent-color);
+.menu-item {
+    cursor: default;
+    padding: 2px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
 }
 
-/* Sections */
-section{
-  min-height: 100vh;
-  padding: 6rem 5%;
-  position: relative;
-  z-index: 1;
+.menu-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Home Section */
-.home{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 4rem;
+.theme-toggle {
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
 }
 
-.home .home-content h1 span{
-  color: var(--accent-color);
+.theme-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
-.btn{
-  padding: 1rem 2.5rem;
-  border: 2px solid var(--accent-color);
-  border-radius: 4rem;
-  background: transparent;
-  color: var(--accent-color);
-  font-size: 1.6rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+/* Desktop Icons */
+.desktop-icons {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    z-index: 10;
 }
 
-.btn:hover{
-  background: var(--accent-color);
-  color: var(--bg-color);
-  box-shadow: 0 0 20px var(--accent-color);
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    color: var(--text-color);
+    text-align: center;
+    font-size: 12px;
 }
 
-.social-icons a{
-  width: 4rem;
-  height: 4rem;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  color: var(--accent-color);
-  border: 2px solid var(--accent-color);
-  border-radius: 50%;
-  margin-right: 1rem;
-  transition: all 0.3s ease;
+.desktop-icon:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
-.social-icons a:hover{
-  transform: scale(1.2) translateY(-3px);
-  background: var(--accent-color);
-  color: var(--bg-color);
-  box-shadow: 0 0 15px var(--accent-color);
+.desktop-icon i {
+    font-size: 32px;
+    margin-bottom: 8px;
+    background: var(--icon-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-/* Skills / Projects / Research Cards */
-.skills, .projects, .research{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+/* Dock */
+.dock {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
 }
 
-.skill, .project, .paper{
-  background-color: var(--card-bg);
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 20px var(--card-shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.dock-container {
+    display: flex;
+    align-items: end;
+    background: var(--dock-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 8px 12px;
+    border: 1px solid var(--dock-border);
+    box-shadow: 0 8px 32px var(--shadow-color);
 }
 
-.skill:hover, .project:hover, .paper:hover{
-  transform: translateY(-5px);
-  box-shadow: 0 0 30px var(--accent-color);
+.dock-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    transform-origin: bottom;
 }
 
-/* Animated skill bars */
-.skill-bar{
-  height: 1.5rem;
-  background: var(--skill-bg);
-  border-radius: 1rem;
-  overflow: hidden;
-  margin-top: 0.5rem;
+.dock-item:hover {
+    transform: scale(1.5) translateY(-8px);
+    margin: 0 12px;
 }
 
-.skill-bar-fill{
-  height: 100%;
-  width: 0;
-  background: var(--accent-color);
-  border-radius: 1rem;
-  transition: width 1.5s ease-in-out;
+.dock-item .icon {
+    width: 55px;
+    height: 55px;
+    background: var(--icon-bg);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: white;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: all 0.2s ease;
 }
 
-/* Footer */
-footer{
-  text-align: center;
-  padding: 2rem;
-  font-size: 1.4rem;
-  color: var(--accent-color);
+.dock-item:hover .icon {
+    box-shadow: 0 8px 24px var(--shadow-color);
+}
+
+.tooltip {
+    position: absolute;
+    top: -35px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.dock-item:hover .tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dock-separator {
+    width: 1px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.2);
+    margin: 0 8px;
+}
+
+/* App Windows */
+.app-window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--window-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px var(--shadow-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 500px;
+    min-height: 400px;
+    z-index: 100;
+    display: none;
+    overflow: hidden;
+}
+
+.dark-mode .window-header {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 12px 15px;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.window-title {
+    font-weight: 600;
+    color: var(--text-color);
+    flex-grow: 1;
+    text-align: center;
+    margin: 0 60px;
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.window-control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.close {
+    background: #ff5f57;
+}
+
+.minimize {
+    background: #ffbd2e;
+}
+
+.maximize {
+    background: #28ca42;
+}
+
+.window-content {
+    padding: 25px;
+    color: var(--text-color);
+    height: calc(100% - 45px);
+    overflow-y: auto;
+}
+
+.window-content h2 {
+    margin-bottom: 15px;
+    color: var(--accent-color);
+}
+
+.window-content h3 {
+    margin: 20px 0 10px;
+    color: var(--accent-color);
+}
+
+.window-content p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.window-content ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.window-content li {
+    margin-bottom: 8px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.skill-item {
+    background: var(--accent-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    transition: transform 0.2s;
+}
+
+.skill-item:hover {
+    transform: translateY(-3px);
+}
+
+.project-card {
+    background: rgba(0, 122, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.contact-item i {
+    font-size: 20px;
+    margin-right: 15px;
+    width: 30px;
+    text-align: center;
+    color: var(--accent-color);
+}
+
+.btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+    margin-top: 10px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: #0056cc;
+}
+
+/* Animations */
+@keyframes bounceIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0.3);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes bounceOut {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(0.3);
+        opacity: 0;
+    }
+}
+
+.bounce-in {
+    animation: bounceIn 0.5s ease;
+}
+
+.bounce-out {
+    animation: bounceOut 0.3s ease;
 }
 
 /* Responsive */
-@media(max-width:995px){
-  .home{
+@media (max-width: 768px) {
+    .dock-container {
+        padding: 6px 8px;
+    }
+
+    .dock-item .icon {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    .desktop-icons {
+        display: none;
+    }
+
+    .app-window {
+        min-width: 90%;
+        min-height: 60%;
+    }
+}
+
+#lock-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(50, 50, 50, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
     flex-direction: column;
+    color: white;
+    font-family: sans-serif;
+}
+
+.lock-container {
     text-align: center;
+}
+
+.lock-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+#lock-password {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-top: 15px;
+    width: 150px;
+    text-align: center;
+}
+
+#unlock-btn {
+    margin-top: 10px;
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #1d72b8;
+    color: white;
+}
+
+.lock-hint {
+    color: #999;
+    /* light gray */
+    font-size: 14px;
+    /* small, unobtrusive */
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+#lock-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.lock-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Blurred version of desktop or just dark overlay */
+    background: url('lbg.jpg') no-repeat center center / cover;
+    filter: blur(10px) brightness(0.5);
+    z-index: 1;
+}
+
+.lock-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.lock-gif {
+    width: 100px;
+    height: 100px;
+    animation: pulse 1.5s infinite;
+}
+
+.lock-hint {
+    font-size: 16px;
+    color: #ccc;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Desktop Terminal Container */
+#desktop-terminal {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 400px;
+    max-height: 300px;
+    background-color: #1e1e1e;
+    border: 2px solid #00ffea;
+    border-radius: 8px;
+    padding-top: 25px;
+    /* space for header */
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    color: #00ffea;
+    overflow-y: auto;
+    box-shadow: 0 0 15px rgba(0, 255, 234, 0.5);
+    z-index: 100;
+}
+
+/* Terminal header with buttons */
+#desktop-terminal-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 25px;
+    background: #111;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    cursor: grab;
+    /* draggable cursor */
+}
+
+/* Terminal buttons */
+.terminal-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.terminal-close {
+    background: #ff5f56;
+}
+
+.terminal-minimize {
+    background: #ffbd2e;
+}
+
+.terminal-maximize {
+    background: #27c93f;
+}
+
+/* Terminal output */
+#desktop-terminal-output div {
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+
+/* Cursor */
+/* #desktop-terminal-cursor {
+    display: inline-block;
+    width: 10px;
+    animation: blink 0.8s infinite;    */
+/* } */
+
+/* Add to your CSS */
+#desktop-terminal-output {
+    position: relative;
+    padding-bottom: 20px;
+    /* space for cursor */
+}
+
+#desktop-terminal-cursor {
+    display: inline;
+    margin-left: 2px;
+    animation: blink 0.8s infinite;
+}
+
+
+
+@keyframes blink {
+
+    0%,
+    50%,
+    100% {
+        opacity: 1;
+    }
+
+    25%,
+    75% {
+        opacity: 0;
+    }
+}
+
+.window-header {
+    background: rgba(40, 40, 40, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 15px;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-color);
+}
+
+.window-header,
+.window-title,
+.window-content {
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode .window-title {
+    color: var(--text-color);
+}
+
+/* Boot overlay */
+#boot-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, #050505 0%, #0f0f12 100%);
+    color: #9be3a9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    transition: opacity 600ms ease, visibility 600ms;
+    opacity: 1;
+    visibility: visible;
+    font-family: 'Fira Code', monospace;
+}
+
+#boot-center {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+#boot-logo {
+    font-size: 96px;
+    line-height: 1;
+    color: #00ff9d;
+    text-shadow: 0 0 18px rgba(0, 255, 157, 0.25);
+    animation: boot-pulse 1.2s infinite;
+}
+
+#boot-sub {
+    margin-top: 8px;
+    color: rgba(155, 227, 169, 0.85);
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* log area */
+#boot-log {
+    width: min(880px, 92%);
+    max-height: 240px;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 12px 14px;
+    border-radius: 8px;
+    overflow-y: auto;
+    font-size: 12px;
+    color: #bfeccf;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* subtle pulse for logo */
+@keyframes boot-pulse {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-4px) scale(1.02);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Boot fade-out utility class */
+#boot-overlay.boot-hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* ensure the overlay text is monospace and crisp on retina */
+#boot-overlay,
+#boot-log {
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Make log lines color-coded */
+.boot-ok {
+    color: #8ef5a8;
+}
+
+.boot-fail {
+    color: #ff7b7b;
+    opacity: 0.95;
+}
+
+.boot-info {
+    color: #bfeccf;
+    opacity: 0.85;
+}
+
+/* Help Terminal - Cyber Neon Matching Style */
+.help-terminal {
+    position: absolute;
+    bottom: 250px;
+    right: 20px;
+    /* right: auto; */
+    width: 400px;
+    max-height: 250px;
+    background-color: #1e1e1e;
+    border: 2px solid #00ffea;
+    border-radius: 8px;
+    padding-top: 25px; /* space for header */
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    color: #00ffea;
+    overflow-y: auto;
+    box-shadow: 0 0 15px rgba(0, 255, 234, 0.5);
+    z-index: 100; /* above desktop terminal slightly */
+}
+
+
+/* Help Terminal header (same as desktop terminal) */
+.help-terminal-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 25px;
+    background: #111;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    cursor: grab;
+}
+
+.help-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.help-close {
+    background: #ff5f56;
+}
+
+.help-minimize {
+    background: #ffbd2e;
+}
+
+.help-maximize {
+    background: #27c93f;
+}
+
+#help-terminal-output {
+    padding: 10px;
+    /* white-space: pre-wrap; */
+    white-space: pre-line;
+    line-height: 1.4;
+    margin-top: 0; 
+    padding-top: 0;
+}
+
+
+/* Minimized */
+.help-terminal.minimized {
+    height: 35px !important;
+    overflow: hidden;
+}
+
+/* Maximized */
+.help-terminal.maximized {
+    width: 90vw !important;
+    height: 70vh !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+}
+/* ---- Mobile UI (iPhone-like) ---- */
+.mobile-ui {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.6));
+  backdrop-filter: blur(8px);
+  display: none; /* shown by JS on mobile */
+  z-index: 20000;
+  color: var(--text-color);
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Container that holds the content centered */
+.mobile-header {
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  background: transparent;
+  color: var(--text-color);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  font-weight: 600;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Back / close button */
+.mobile-back,
+.mobile-close-page {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 26px;
+  padding: 6px 8px;
+  cursor: pointer;
+}
+
+/* Title center */
+.mobile-title {
+  font-size: 16px;
+  text-align: center;
+}
+
+/* App list */
+.mobile-app-list {
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  overflow-y: auto;
+  height: calc(100vh - 62px);
+}
+
+/* Card */
+.mobile-card {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  background: rgba(255,255,255,0.03);
+  border-radius: 14px;
+  padding: 12px;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+}
+
+.mobile-card:active,
+.mobile-card:hover {
+  transform: translateY(-3px);
+}
+
+/* icon circle */
+.mobile-card .card-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  background: var(--icon-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: white;
+  flex: 0 0 54px;
+}
+
+/* text */
+.mobile-card .card-body {
+  display: flex;
+  flex-direction: column;
+}
+.mobile-card .card-title {
+  font-weight: 700;
+  font-size: 15px;
+}
+.mobile-card .card-sub {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 3px;
+}
+
+/* Mobile page (slide-in) */
+.mobile-page {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--window-bg);
+  z-index: 21000;
+  transition: right 320ms cubic-bezier(.22,.9,.3,1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-page.open {
+  right: 0;
+}
+
+.mobile-page-inner {
+  width: 94%;
+  max-width: 720px;
+  height: 92%;
+  background: var(--window-bg);
+  border-radius: 16px;
+  overflow: auto;
+  box-shadow: 0 20px 60px var(--shadow-color);
+  padding: 18px;
+  position: relative;
+}
+
+.mobile-page .mobile-close-page {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+}
+
+/* page content */
+.mobile-page-content {
+  margin-top: 46px;
+  color: var(--text-color);
+  line-height: 1.5;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Small-screen force: ensure desktop is hidden (fallback) */
+@media (max-width: 767px) {
+  .menu-bar, 
+  .dock, 
+  .desktop-icons, 
+  #desktop-terminal, 
+  .app-window {     /* ← IMPORTANT FIX */
+    display: none !important;
   }
-  .home-img img{
-    width: 50%;
-  }
-  header nav a{
-    margin-left: 1rem;
+
+  .mobile-ui.js-active { 
+    display: block; 
   }
 }
+

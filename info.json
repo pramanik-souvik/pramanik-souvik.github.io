@@ -1,0 +1,38 @@
+{
+  "about": {
+    "title": "About Me",
+    "content": "<h2>Hello! I'm Alex Chen</h2><p>I'm a passionate full-stack developer with over 5 years of experience creating digital solutions that make a difference. I specialize in JavaScript, React, Node.js, and modern web technologies.</p><p>When I'm not coding, you can find me hiking, reading tech blogs, or experimenting with new frameworks and tools.</p><h3>Education</h3><p>BS in Computer Science from Stanford University</p><h3>Certifications</h3><ul><li>AWS Certified Developer</li><li>Google Cloud Professional Developer</li><li>React Native Certification</li></ul>"
+  },
+  "projects": {
+    "title": "My Projects",
+    "content": "<h2>Featured Projects</h2><div class=\"project-card\"><h3>E-Commerce Platform</h3><p>A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.</p><p><strong>Technologies:</strong> React, Node.js, MongoDB, Stripe API</p></div><div class=\"project-card\"><h3>Task Management App</h3><p>A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.</p><p><strong>Technologies:</strong> Vue.js, Firebase, Socket.io</p></div><div class=\"project-card\"><h3>Weather Dashboard</h3><p>A responsive weather application that displays current conditions and forecasts for multiple locations with interactive charts.</p><p><strong>Technologies:</strong> JavaScript, Chart.js, Weather API</p></div>"
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "content": "<h2>Technical Skills</h2><div class=\"skills-grid\"><div class=\"skill-item\">JavaScript</div><div class=\"skill-item\">TypeScript</div><div class=\"skill-item\">React</div><div class=\"skill-item\">Vue.js</div><div class=\"skill-item\">Node.js</div><div class=\"skill-item\">Python</div><div class=\"skill-item\">HTML/CSS</div><div class=\"skill-item\">MongoDB</div><div class=\"skill-item\">PostgreSQL</div><div class=\"skill-item\">AWS</div><div class=\"skill-item\">Docker</div><div class=\"skill-item\">Git</div></div><h3>Soft Skills</h3><ul><li>Problem Solving</li><li>Team Collaboration</li><li>Project Management</li><li>Agile Methodology</li><li>Technical Communication</li></ul>"
+  },
+  "resume": {
+    "title": "Resume",
+    "content": "<h2>Work Experience</h2><div class=\"project-card\"><h3>Senior Developer - Tech Solutions Inc.</h3><p><em>2020 - Present</em></p><p>Lead a team of 5 developers in building scalable web applications for enterprise clients. Implemented CI/CD pipelines reducing deployment time by 40%.</p></div><div class=\"project-card\"><h3>Full Stack Developer - Digital Creations</h3><p><em>2018 - 2020</em></p><p>Developed and maintained multiple client websites and web applications. Collaborated with designers to implement responsive UI/UX designs.</p></div><div class=\"project-card\"><h3>Junior Developer - Startup Labs</h3><p><em>2017 - 2018</em></p><p>Assisted in the development of MVP products. Gained experience in fast-paced agile development environment.</p></div><a href=\"#\" class=\"btn\">Download PDF Resume</a>"
+  },
+  "contact": {
+    "title": "Contact Me",
+    "content": "<h2>Get In Touch</h2><p>I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.</p><div class=\"contact-item\"><i class=\"fas fa-envelope\"></i><div><strong>Email</strong><br>alex.chen@example.com</div></div><div class=\"contact-item\"><i class=\"fas fa-phone\"></i><div><strong>Phone</strong><br>+1 (555) 123-4567</div></div><div class=\"contact-item\"><i class=\"fas fa-map-marker-alt\"></i><div><strong>Location</strong><br>San Francisco, CA</div></div><a href=\"mailto:alex.chen@example.com\" class=\"btn\">Send Email</a>"
+  },
+  "github": {
+    "title": "GitHub",
+    "content": "<h2>My GitHub Profile</h2><p>Check out my open source contributions, personal projects, and code samples on GitHub.</p><div class=\"contact-item\"><i class=\"fab fa-github\"></i><div><strong>GitHub</strong><br>github.com/alexchen</div></div><h3>Recent Activity</h3><ul><li>Contributed to Open Source Project \"React Components\"</li><li>Created \"DevTools Extension\" with 200+ stars</li><li>Published \"Web Performance\" tutorial series</li></ul><a href=\"https://github.com/alexchen\" target=\"_blank\" class=\"btn\">Visit My GitHub</a>"
+  },
+  "linkedin": {
+    "title": "LinkedIn",
+    "content": "<h2>LinkedIn Profile</h2><p>Connect with me professionally on LinkedIn to stay updated with my career journey and professional insights.</p><div class=\"contact-item\"><i class=\"fab fa-linkedin\"></i><div><strong>LinkedIn</strong><br>linkedin.com/in/alexchen</div></div><h3>Recommendations</h3><div class=\"project-card\"><p>\"Alex is an exceptional developer who consistently delivers high-quality code. His problem-solving skills and attention to detail make him a valuable asset to any team.\"</p><p><strong>- Sarah Johnson, Project Manager at Tech Solutions Inc.</strong></p></div><a href=\"https://linkedin.com/in/alexchen\" target=\"_blank\" class=\"btn\">Connect on LinkedIn</a>"
+  },
+  "trash": {
+    "title": "Trash",
+    "content": "<h2>Trash</h2><p>No items in trash. Items you delete will appear here.</p><div style=\"text-align: center; margin-top: 50px; font-size: 48px; opacity: 0.5;\"><i class=\"fas fa-trash\"></i></div>"
+  },
+  "terminal": {
+  "title": "Terminal",
+  "content": "<div id='terminal-window'><div id='terminal-output'></div><span id='terminal-cursor'>|</span></div>"
+  }
+}

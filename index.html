@@ -1,88 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Souvik Pramanik | Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Chen - macOS Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
-
-  <!-- Particle Background -->
-  <div id="particles-js"></div>
-
-  <!-- Dark/Light mode toggle -->
-  <div class="theme-toggle" id="theme-toggle">
-    <i class="fas fa-moon"></i>
-  </div>
-
-  <!-- Header -->
-  <header id="header">
-    <a href="#home" class="logo">Souvik</a>
-    <nav id="navbar">
-      <a href="#home" class="active">Home</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#research">Research</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <!-- Home Section -->
-  <section class="home" id="home">
-    <div class="home-img">
-      <img src="your-photo.jpg" alt="Souvik Pramanik">
+    <!-- Lock Screen -->
+    <div id="lock-screen" style="display: none;">
+        <div class="lock-background"></div>
+        <div class="lock-container">
+            <img src="lan.gif" alt="Lock Animation" class="lock-gif">
+            <p class="lock-hint">Enter 1234 to unlock</p>
+            <input type="password" id="lock-password" placeholder="Password" maxlength="4">
+            <button id="unlock-btn" class="btn">Unlock</button>
+            <p id="lock-error" style="color: #ff3b30; margin-top: 10px; display: none;">Incorrect password</p>
+        </div>
     </div>
-    <div class="home-content">
-      <h1>Hi, I'm <span>Souvik Pramanik</span></h1>
-      <h3 class="typing-text">I'm a <span></span></h3>
-      <p>AI Researcher | Developer | AI & Data Science Enthusiast. Exploring NLP, LLMs, VLMs, Computer Vision & Quantum ML.</p>
-      <div class="social-icons">
-        <a href="https://linkedin.com/in/yourprofile"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/pramanik-souvik"><i class="fab fa-github"></i></a>
-        <a href="https://twitter.com/yourprofile"><i class="fab fa-twitter"></i></a>
-        <a href="https://facebook.com/yourprofile"><i class="fab fa-facebook"></i></a>
-      </div>
-      <a href="#contact" class="btn">Hire Me</a>
+
+    <!-- Boot Overlay: place this above the .desktop in index.html -->
+    <div id="boot-overlay" aria-hidden="true">
+        <div id="boot-center">
+            <div id="boot-logo">&gt;</div> <!-- terminal cursor logo -->
+            <div id="boot-sub">Starting system...</div>
+        </div>
+
+        <div id="boot-log" aria-hidden="true"></div>
     </div>
-  </section>
 
-  <!-- Skills Section -->
-  <section id="skills">
-    <h2>Skills</h2>
-    <div id="skills-container" class="skills"></div>
-  </section>
 
-  <!-- Projects Section -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <div id="projects-container" class="projects"></div>
-  </section>
+    <div class="desktop">
+        <!-- Menu Bar -->
+        <div class="menu-bar">
+            <div class="apple-menu">
+                <span class="apple-logo"><i class="fab fa-apple"></i></span>
+                <span class="menu-item">Souvik Pramanik</span>
+            </div>
+            <div class="menu-items">
+                <span class="menu-item">File</span>
+                <span class="menu-item">Edit</span>
+                <span class="menu-item">View</span>
+                <span class="menu-item">Window</span>
+                <span class="menu-item">Help</span>
+            </div>
+            <div class="menu-time">
+                <span id="current-time">10:30 AM</span>
+                <span class="theme-toggle" id="theme-toggle">☀️ </span>
+            </div>
+        </div>
+        <div id="desktop-terminal">
+            <div id="desktop-terminal-header">
+                <div class="terminal-btn terminal-close"></div>
+                <div class="terminal-btn terminal-minimize"></div>
+                <div class="terminal-btn terminal-maximize"></div>
+                <div style="flex-grow: 1;"></div>
+            </div>
+            <div id="desktop-terminal-output"></div>
+            <!-- <span id="desktop-terminal-cursor">|</span> -->
+        </div>
+        <div id="help-terminal" class="help-terminal">
+            <div class="help-terminal-header" id="help-terminal-header">
+                <div class="help-btn help-close"></div>
+                <div class="help-btn help-minimize"></div>
+                <div class="help-btn help-maximize"></div>
+            </div>
 
-  <!-- Research Section -->
-  <section id="research">
-    <h2>Research & Publications</h2>
-    <div id="research-container" class="research"></div>
-  </section>
+            <div id="help-terminal-output">> Welcome to my interactive portfolio! 🖥️
+                > Click app icons in the dock to explore
+                > Drag windows around like a real OS
+                > Dark/Light mode toggle in menu 🌗
+                > Easter eggs hidden 👀
+            </div>
+        </div>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <div class="social-icons">
-      <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i></a>
-      <a href="https://linkedin.com/in/yourprofile"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/pramanik-souvik"><i class="fab fa-github"></i></a>
-      <a href="https://facebook.com/yourprofile"><i class="fab fa-facebook"></i></a>
+
+
+        <!-- Desktop Icons -->
+        <div class="desktop-icons">
+            <div class="desktop-icon" data-app="about">
+                <i class="fas fa-user"></i>
+                <span>About Me</span>
+            </div>
+            <div class="desktop-icon" data-app="projects">
+                <i class="fas fa-folder"></i>
+                <span>Projects</span>
+            </div>
+            <div class="desktop-icon" data-app="contact">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+            </div>
+        </div>
+
+        <!-- Dock -->
+        <div class="dock">
+            <div class="dock-container">
+                <div class="dock-item" data-app="about">
+                    <div class="icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="tooltip">About Me</span>
+                </div>
+                <div class="dock-item" data-app="projects">
+                    <div class="icon">
+                        <i class="fas fa-folder"></i>
+                    </div>
+                    <span class="tooltip">Projects</span>
+                </div>
+                <div class="dock-item" data-app="skills">
+                    <div class="icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <span class="tooltip">Skills</span>
+                </div>
+                <div class="dock-item" data-app="resume">
+                    <div class="icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <span class="tooltip">Resume</span>
+                </div>
+                <div class="dock-item" data-app="contact">
+                    <div class="icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <span class="tooltip">Contact</span>
+                </div>
+                <div class="dock-item" data-app="github">
+                    <div class="icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <span class="tooltip">GitHub</span>
+                </div>
+                <div class="dock-item" data-app="linkedin">
+                    <div class="icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <span class="tooltip">LinkedIn</span>
+                </div>
+                <div class="dock-separator"></div>
+                <div class="dock-item" data-app="trash">
+                    <div class="icon">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                    <span class="tooltip">Trash</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- App Windows -->
+        <div id="app-windows">
+            <!-- Windows will be dynamically created here -->
+        </div>
+        <!-- Mobile UI (hidden on desktop; shown by JS on small screens) -->
+        <div id="mobile-ui" class="mobile-ui" aria-hidden="true" role="dialog">
+            <header class="mobile-header">
+                <button id="mobile-back" class="mobile-back" aria-hidden="true">‹</button>
+                <div class="mobile-title">Souvik Pramanik</div>
+                <div class="mobile-empty"></div>
+            </header>
+
+            <div id="mobile-app-list" class="mobile-app-list" role="list">
+                <!-- JS will populate cards here -->
+            </div>
+
+            <div id="mobile-page" class="mobile-page" aria-hidden="true">
+                <div class="mobile-page-inner">
+                    <button id="mobile-close-page" class="mobile-close-page">Back</button>
+                    <div id="mobile-page-content" class="mobile-page-content"></div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
-  </section>
 
-  <footer>
-    <p>© 2025 Souvik Pramanik | Built with ❤ and hosted on GitHub Pages</p>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
