@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Souvik Pramanik — AI Researcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <style>
+        /* ── RESET ───────────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px
+        }
+
+        /* ── TOKENS ──────────────────────────────────────── */
+        :root {
+            --bg: #F8F7F4;
+            --surface: #FFFFFF;
+            --ink: #111111;
+            --ink-2: #3D4451;
+            --ink-3: #6B7280;
+            --accent: #0D6E6E;
+            --accent-lt: #E6F3F3;
+            --rule: #E2E1DE;
+            --serif: "DM Serif Display", Georgia, serif;
+            --sans: "Inter", system-ui, sans-serif;
+            --nav-w: 220px;
+            --max: 780px;
+            --tr: 0.2s ease;
+        }
+
+        /* ── BASE ────────────────────────────────────────── */
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity var(--tr)
+        }
+
+        a:hover {
+            opacity: .72
+        }
+
+        a:visited {
+            color: var(--accent)
+        }
+
+        img {
+            display: block;
+            max-width: 100%
+        }
+
+        /* ── LAYOUT ──────────────────────────────────────── */
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ── SIDEBAR NAV ─────────────────────────────────── */
+        .sidebar {
+            width: var(--nav-w);
+            flex-shrink: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            padding: 48px 28px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--rule);
+            background: var(--surface);
+            z-index: 100;
+        }
+
+        .sidebar-name {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            color: var(--ink);
+            line-height: 1.25;
+            margin-bottom: 6px;
+        }
+
+        .sidebar-role {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-bottom: 36px;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--ink-2);
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: background var(--tr), color var(--tr);
+            letter-spacing: .01em;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: var(--accent-lt);
+            color: var(--accent);
+            opacity: 1;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            display: flex;
+            gap: 14px;
+            font-size: 1.1rem;
+            color: var(--ink-3);
+        }
+
+        .sidebar-bottom a {
+            color: var(--ink-3);
+            transition: color var(--tr)
+        }
+
+        .sidebar-bottom a:hover {
+            color: var(--accent);
+            opacity: 1
+        }
+
+        /* ── MOBILE HEADER ───────────────────────────────── */
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--rule);
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 200;
+        }
+
+        .mobile-name {
+            font-family: var(--serif);
+            font-size: 1rem;
+            color: var(--ink)
+        }
+
+        .burger {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 4px;
+        }
+
+        .burger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--ink);
+            border-radius: 2px;
+            transition: .3s
+        }
+
+        .burger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg)
+        }
+
+        .burger.open span:nth-child(2) {
+            opacity: 0
+        }
+
+        .burger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg)
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 56px;
+            left: 0;
+            right: 0;
+            background: var(--surface);
+            border-bottom: 1px solid var(--rule);
+            flex-direction: column;
+            padding: 12px 20px 20px;
+            gap: 2px;
+            z-index: 199;
+        }
+
+        .mobile-nav.open {
+            display: flex
+        }
+
+        .mobile-nav a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--ink-2);
+            padding: 8px 10px;
+            border-radius: 6px;
+        }
+
+        .mobile-nav a.active {
+            background: var(--accent-lt);
+            color: var(--accent)
+        }
+
+        /* ── MAIN CONTENT ────────────────────────────────── */
+        .main {
+            margin-left: var(--nav-w);
+            flex: 1;
+            max-width: calc(var(--nav-w) + var(--max));
+        }
+
+        .section {
+            padding: 72px 60px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .section:last-child {
+            border-bottom: none
+        }
+
+        /* ── SECTION LABEL ───────────────────────────────── */
+        .sec-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sec-label::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--rule);
+        }
+
+        /* ── HERO SECTION ────────────────────────────────── */
+        #home {
+            padding-top: 80px;
+        }
+
+        .hero-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            margin-bottom: 28px;
+        }
+
+        .hero-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--rule);
+            flex-shrink: 0;
+        }
+
+        .hero-text {}
+
+        .hero-name {
+            font-family: var(--serif);
+            font-size: 2.8rem;
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+
+        .hero-tagline {
+            font-size: 1.05rem;
+            color: var(--ink-2);
+            font-weight: 300;
+            margin-bottom: 16px;
+        }
+
+        /* ── SIGNATURE byline ── the unique element ── */
+        .research-byline {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            flex-wrap: wrap;
+            margin: 18px 0 22px;
+            position: relative;
+        }
+
+        .research-byline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 100%;
+            height: 1px;
+            background: var(--rule);
+        }
+
+        .byline-tag {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            padding: 3px 10px 3px 0;
+        }
+
+        .byline-tag+.byline-tag {
+            padding-left: 10px;
+            border-left: 1px solid var(--rule);
+        }
+
+        .hero-intro {
+            font-size: 1rem;
+            color: var(--ink-2);
+            line-height: 1.8;
+            max-width: 600px;
+            margin-top: 24px;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            padding: 9px 20px;
+            border-radius: 6px;
+            transition: background var(--tr), opacity var(--tr);
+        }
+
+        .btn-primary:hover {
+            background: #0a5858;
+            opacity: 1;
+            color: #fff
+        }
+
+        .btn-primary:visited {
+            color: #fff
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            border: 1px solid #C5C3BE;
+            color: var(--ink-2);
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            padding: 9px 20px;
+            border-radius: 6px;
+            transition: border-color var(--tr), color var(--tr);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            opacity: 1
+        }
+
+        .btn-outline:visited {
+            color: var(--ink-2)
+        }
+
+        /* ── ABOUT ───────────────────────────────────────── */
+        .about-body {
+            font-size: 0.97rem;
+            color: var(--ink-2);
+            line-height: 1.85;
+            max-width: 640px;
+        }
+
+        /* experience */
+        .exp-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 32px
+        }
+
+        .exp-item {
+            padding: 20px 0 20px 20px;
+            border-left: 2px solid var(--rule);
+            transition: border-color var(--tr);
+        }
+
+        .exp-item:hover {
+            border-left-color: var(--accent)
+        }
+
+        .exp-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 5px;
+        }
+
+        .exp-body {
+            font-size: 0.88rem;
+            color: var(--ink-3);
+            line-height: 1.75
+        }
+
+        /* education */
+        .edu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 20px
+        }
+
+        .edu-item {
+            padding: 18px 0 18px 20px;
+            border-left: 2px solid var(--rule);
+            transition: border-color var(--tr);
+            position: relative;
+        }
+
+        .edu-item::before {
+            content: "";
+            position: absolute;
+            left: -5px;
+            top: 22px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--rule);
+            transition: border-color var(--tr), background var(--tr);
+        }
+
+        .edu-item:hover {
+            border-left-color: var(--accent)
+        }
+
+        .edu-item:hover::before {
+            border-color: var(--accent);
+            background: var(--accent-lt)
+        }
+
+        .edu-degree {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--ink)
+        }
+
+        .edu-meta {
+            font-size: 0.82rem;
+            color: var(--ink-3);
+            margin: 2px 0 5px
+        }
+
+        .edu-summary {
+            font-size: 0.85rem;
+            color: var(--ink-2);
+            line-height: 1.7
+        }
+
+        /* ── PUBLICATIONS ────────────────────────────────── */
+        .pub-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 8px
+        }
+
+        .pub-item {
+            padding: 22px 0 22px 20px;
+            border-left: 2px solid var(--rule);
+            transition: border-color var(--tr);
+        }
+
+        .pub-item:hover {
+            border-left-color: var(--accent)
+        }
+
+        .pub-venue {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            background: var(--accent-lt);
+            color: var(--accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .pub-title {
+            font-size: 0.97rem;
+            font-weight: 600;
+            color: var(--ink);
+            line-height: 1.5;
+            margin-bottom: 5px;
+        }
+
+        .pub-authors {
+            font-size: 0.82rem;
+            color: var(--ink-3);
+            margin-bottom: 10px;
+        }
+
+        .pub-authors strong {
+            color: var(--ink-2);
+            font-weight: 600
+        }
+
+        .pub-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+
+        .pub-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: .04em;
+            color: var(--ink-3);
+            border: 1px solid var(--rule);
+            padding: 3px 10px;
+            border-radius: 4px;
+            transition: color var(--tr), border-color var(--tr);
+        }
+
+        .pub-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            opacity: 1
+        }
+
+        .pub-link:visited {
+            color: var(--ink-3)
+        }
+
+        .pub-note {
+            font-size: 0.75rem;
+            color: #fff;
+            font-weight: 600;
+            background: var(--accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+            letter-spacing: .04em;
+            display: inline-block;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        /* ── PROJECTS ────────────────────────────────────── */
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 8px
+        }
+
+        .project-item {
+            padding: 22px 0 22px 20px;
+            border-left: 2px solid var(--rule);
+            transition: border-color var(--tr);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .project-item:hover {
+            border-left-color: var(--accent)
+        }
+
+        .project-body {
+            flex: 1
+        }
+
+        .project-title {
+            font-size: 0.97rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 5px
+        }
+
+        .project-desc {
+            font-size: 0.87rem;
+            color: var(--ink-3);
+            line-height: 1.75;
+            margin-bottom: 10px
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--ink-3);
+            border: 1px solid var(--rule);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* ── TECH STACK ──────────────────────────────────── */
+        .tech-table {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 0;
+            margin-top: 8px;
+            border: 1px solid var(--rule);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .tech-row {
+            display: contents;
+        }
+
+        .tech-row:not(:last-child) .tech-cat,
+        .tech-row:not(:last-child) .tech-pills {
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .tech-cat {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            padding: 14px 16px;
+            background: var(--bg);
+            border-right: 1px solid var(--rule);
+            display: flex;
+            align-items: center;
+        }
+
+        .tech-pills {
+            padding: 12px 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            align-items: center;
+            background: var(--surface);
+        }
+
+        .pill {
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--ink-2);
+            background: var(--bg);
+            border: 1px solid var(--rule);
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        /* ── CONTACT ─────────────────────────────────────── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 8px;
+        }
+
+        .contact-info p {
+            font-size: 0.9rem;
+            color: var(--ink-2);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.87rem;
+            color: var(--ink-2);
+            margin-bottom: 10px;
+        }
+
+        .contact-detail i {
+            color: var(--accent);
+            width: 16px;
+            text-align: center
+        }
+
+        .contact-socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            border: 1px solid var(--rule);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-3);
+            font-size: 0.95rem;
+            transition: border-color var(--tr), color var(--tr);
+        }
+
+        .social-icon:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            opacity: 1
+        }
+
+        .social-icon:visited {
+            color: var(--ink-3)
+        }
+
+        /* contact form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            background: var(--surface);
+            font-family: var(--sans);
+            font-size: 0.88rem;
+            color: var(--ink);
+            outline: none;
+            transition: border-color var(--tr);
+            resize: vertical;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--accent)
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--ink-3)
+        }
+
+        /* ── FOOTER ──────────────────────────────────────── */
+        .footer {
+            padding: 32px 60px;
+            border-top: 1px solid var(--rule);
+            margin-left: var(--nav-w);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer-copy {
+            font-size: 0.8rem;
+            color: var(--ink-3)
+        }
+
+        /* ── PAGE FADE ───────────────────────────────────── */
+        @keyframes pagein {
+            from {
+                opacity: 0;
+                transform: translateY(12px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        .main {
+            animation: pagein .5s ease both
+        }
+
+        /* ── RESPONSIVE ──────────────────────────────────── */
+        @media(max-width:860px) {
+            .sidebar {
+                display: none
+            }
+
+            .mobile-header {
+                display: flex
+            }
+
+            .main {
+                margin-left: 0;
+                padding-top: 56px
+            }
+
+            .section {
+                padding: 48px 24px
+            }
+
+            .footer {
+                margin-left: 0;
+                padding: 24px
+            }
+
+            .hero-name {
+                font-size: 2rem
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr
+            }
+
+            .tech-table {
+                grid-template-columns: 1fr
+            }
+
+            .tech-cat {
+                border-right: none;
+                border-bottom: 1px solid var(--rule)
+            }
+        }
+
+        @media(max-width:500px) {
+            .hero-row {
+                flex-direction: column;
+                gap: 20px
+            }
+
+            .tech-table {
+                font-size: .85rem
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── SIDEBAR ──────────────────────────────────────── -->
+    <div class="layout">
+        <aside class="sidebar">
+            <p class="sidebar-name">Souvik<br>Pramanik</p>
+            <p class="sidebar-role">AI Researcher</p>
+            <ul class="sidebar-nav">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#publications" class="nav-link">Publications</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#techstack" class="nav-link">Tech Stack</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="sidebar-bottom">
+                <a class="s-github" href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a class="s-linkedin" href="https://linkedin.com/in/pramaniksouvik" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a class="s-twitter" href="#" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a class="s-scholar" href="https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=ACrTK9WLdyLBQOt-rt97E1DtuIKfJA1uXwMjqWrRuPvWr633ctImRnEPb9fkqAwPJ8lBme11Ff7qi3gquZjGEg&user=nfpXz9gAAAAJ" aria-label="Google Scholar" title="Google Scholar"><i
+                        class="fas fa-graduation-cap"></i></a>
+                <a class="s-researchgate" href="https://www.researchgate.net/profile/Souvik-Pramanik-3" aria-label="ResearchGate" title="ResearchGate"><i
+                        class="fab fa-researchgate"></i></a>
+            </div>
+        </aside>
+
+        <!-- ── MOBILE HEADER ────────────────────────────────── -->
+        <header class="mobile-header">
+            <span class="mobile-name">Souvik Pramanik</span>
+            <button class="burger" id="burger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </header>
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#publications" class="nav-link">Publications</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#techstack" class="nav-link">Tech Stack</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <!-- ── MAIN ─────────────────────────────────────────── -->
+        <div class="main">
+
+            <!-- HERO -->
+            <section class="section" id="home">
+                <div class="sec-label">Overview</div>
+                <div class="hero-row">
+                    <img class="hero-photo" src="img.jpg" alt="Souvik Pramanik" id="hero-photo" />
+                    <div class="hero-text">
+                        <h1 class="hero-name">Souvik Pramanik</h1>
+                        <p class="hero-tagline">BSc Candidate · North South University, Dhaka</p>
+                    </div>
+                </div>
+
+                <!-- SIGNATURE BYLINE -->
+                <div class="research-byline">
+                    <span class="byline-tag">NLP &amp; LLMs</span>
+                    <span class="byline-tag">Quantum ML</span>
+                    <span class="byline-tag">Computer Vision</span>
+                    <span class="byline-tag">Vision-Language Models</span>
+                </div>
+
+                <p class="hero-intro" style="margin-top:28px">
+                    I am a Research Assistant at North South University working at the intersection of Natural Language
+                    Processing, Large Language Models, and Multimodal AI. My research interests include low-resource
+                    language technologies, multilingual AI, LLM alignment and evaluation, representation learning, and
+                    benchmark construction. I am particularly interested in developing robust and accessible AI systems
+                    for underrepresented languages and plan to pursue a PhD focused on advancing language and multimodal
+                    intelligence.
+                </p>
+
+                <div class="hero-links">
+                    <a class="btn-primary" href="souvik.pdf" download id="cv-link">
+                        <i class="fas fa-file-alt" style="font-size:.8rem"></i> Curriculum Vitae
+                    </a>
+                    <a class="btn-outline" href="#contact">
+                        <i class="fas fa-envelope" style="font-size:.8rem"></i> Get in Touch
+                    </a>
+                    <a class="btn-outline" href="#publications">
+                        <i class="fas fa-book-open" style="font-size:.8rem"></i> Publications
+                    </a>
+                    <a class="btn-outline s-scholar" href="https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=ACrTK9WLdyLBQOt-rt97E1DtuIKfJA1uXwMjqWrRuPvWr633ctImRnEPb9fkqAwPJ8lBme11Ff7qi3gquZjGEg&user=nfpXz9gAAAAJ">
+                        <i class="fas fa-graduation-cap" style="font-size:.8rem"></i> Scholar
+                    </a>
+                    <a class="btn-outline s-researchgate" href="https://www.researchgate.net/profile/Souvik-Pramanik-3">
+                        <i class="fab fa-researchgate" style="font-size:.8rem"></i> ResearchGate
+                    </a>
+                </div>
+            </section>
+
+            <!-- ABOUT -->
+            <section class="section" id="about">
+                <div class="sec-label">About</div>
+
+                <p class="about-body">
+                    I'm Souvik — a Research Assistant at North South University with a passion for advancing AI through
+                    research. My interests span natural language processing, large language models, multimodal learning,
+                    and low-resource language technologies. Through publications and collaborative research projects, I
+                    investigate how intelligent systems can become more reliable, inclusive, and effective across
+                    diverse languages and domains. I am particularly motivated by open scientific inquiry,
+                    interdisciplinary collaboration, and the pursuit of research questions that have meaningful societal
+                    impact.
+
+                </p>
+
+                <div class="exp-list" id="exp-list">
+                    <!-- JS fills -->
+                </div>
+
+                <div class="sec-label" style="margin-top:48px">Education</div>
+                <div class="edu-list" id="edu-list">
+                    <!-- JS fills -->
+                </div>
+            </section>
+
+            <!-- PUBLICATIONS -->
+            <section class="section" id="publications">
+                <div class="sec-label">Publications</div>
+                <div class="pub-list" id="pub-list">
+                    <!-- JS fills -->
+                </div>
+                <p style="margin-top:24px;font-size:0.82rem;color:var(--ink-3)">
+                    * denotes equal contribution. † denotes corresponding author.
+                </p>
+            </section>
+
+            <!-- PROJECTS -->
+            <section class="section" id="projects">
+                <div class="sec-label">Projects</div>
+                <div class="project-list" id="project-list">
+                    <!-- JS fills -->
+                </div>
+            </section>
+
+            <!-- TECH STACK -->
+            <section class="section" id="techstack">
+                <div class="sec-label">Technical Skills</div>
+                <div class="tech-table" id="tech-table">
+                    <!-- JS fills -->
+                </div>
+            </section>
+
+            <!-- CONTACT -->
+            <section class="section" id="contact">
+                <div class="sec-label">Contact</div>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <p>
+                            I'm open to research collaborations, PhD programme enquiries, and conversations
+                            about AI. The best way to reach me is by email.
+                        </p>
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:pramanik-souvik@protonmail.com"
+                                id="email-link">pramanik-souvik@protonmail.com</a>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Dhaka, Bangladesh</span>
+                        </div>
+                        <div class="contact-socials">
+                            <a class="social-icon s-github" href="#" aria-label="GitHub"><i
+                                    class="fab fa-github"></i></a>
+                            <a class="social-icon s-linkedin" href="https://linkedin.com/in/pramaniksouvik" aria-label="LinkedIn"><i
+                                    class="fab fa-linkedin"></i></a>
+                            <a class="social-icon s-twitter" href="#" aria-label="X/Twitter"><i
+                                    class="fa-brands fa-x-twitter"></i></a>
+                            <a class="social-icon s-reddit" href="#" aria-label="Reddit"><i
+                                    class="fab fa-reddit"></i></a>
+                            <a class="social-icon s-discord" href="#" aria-label="Discord"><i
+                                    class="fab fa-discord"></i></a>
+                            <a class="social-icon s-scholar" href="https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=ACrTK9WLdyLBQOt-rt97E1DtuIKfJA1uXwMjqWrRuPvWr633ctImRnEPb9fkqAwPJ8lBme11Ff7qi3gquZjGEg&user=nfpXz9gAAAAJ" aria-label="Google Scholar"
+                                title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                            <a class="social-icon s-researchgate" href="https://www.researchgate.net/profile/Souvik-Pramanik-3" aria-label="ResearchGate"
+                                title="ResearchGate"><i class="fab fa-researchgate"></i></a>
+                        </div>
+                    </div>
+                    <form class="contact-form" id="contactForm">
+                        <input type="email" id="cemail" placeholder="Your email" required />
+                        <input type="text" id="csubject" placeholder="Subject" />
+                        <textarea id="cmessage" rows="5" placeholder="Your message" required></textarea>
+                        <button type="submit" class="btn-primary" style="align-self:flex-start">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+        </div><!-- /main -->
+    </div><!-- /layout -->
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <span class="footer-copy">© 2025 Souvik Pramanik. Built with care.</span>
+        <a class="btn-outline" href="souvik.pdf" download id="cv-footer" style="font-size:0.78rem;padding:6px 14px">
+            <i class="fas fa-download" style="font-size:.75rem"></i> Download CV
+        </a>
+    </footer>
+
+    <script>
+        /* ═══════════════════════════════════════════════════
+           DATA — edit this to update your portfolio
+        ═══════════════════════════════════════════════════ */
+        const DATA = {
+            contact: {
+                email: "pramanik-souvik@protonmail.com",
+                cv: "souvik.pdf",
+                socials: { github: "https://github.com/pramanik-souvik", linkedin: "https://linkedin.com/in/pramaniksouvik", twitter: "https://x.com/_mrw3ird0", reddit: "https://www.reddit.com/user/mrw3ird0", discord: "https://discord.com/users/658318775820484608", scholar: "https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=ACrTK9WLdyLBQOt-rt97E1DtuIKfJA1uXwMjqWrRuPvWr633ctImRnEPb9fkqAwPJ8lBme11Ff7qi3gquZjGEg&user=nfpXz9gAAAAJ", researchgate: "https://www.researchgate.net/profile/Souvik-Pramanik-3?ev=hdr_xprf" }
+            },
+            hero: { picture: "img.jpeg" },
+
+            experience: [
+                {
+                    title: "Large Language Models (LLM)",
+                    details: "Fine-tuning, RLHF, and real-world NLP applications. Investigating how modern LLMs reason, generalise, and fail — with a focus on low-resource language settings."
+                },
+                {
+                    title: "Quantum Machine Learning (QML)",
+                    details: "Blending classical neural network intuition with quantum circuits using Qiskit and PennyLane. Exploring variational quantum algorithms and their classical analogues."
+                },
+                {
+                    title: "Computer Vision (CV)",
+                    details: "Image classification, object detection, and Vision Transformers using PyTorch and OpenCV. Interested in data-efficient learning and representation quality."
+                },
+                {
+                    title: "Vision-Language Models (VLM)",
+                    details: "CLIP-style contrastive embeddings and multimodal architectures connecting visual and textual representations for downstream reasoning tasks."
+                }
+            ],
+
+            education: [
+                {
+                    degree: "Bachelor of Science in Computer Science",
+                    school: "North South University",
+                    location: "Dhaka, Bangladesh",
+                    year: "2021 – 2025",
+                    note: "Focus on AI, ML, and Quantum Computing."
+                },
+                {
+                    degree: "Higher Secondary Certificate (HSC)",
+                    school: "Milestone College",
+                    location: "Uttara, Dhaka",
+                    year: "2020",
+                    note: "Science stream. Strengthened foundations in mathematics and logical reasoning."
+                },
+                {
+                    degree: "Secondary School Certificate (SSC)",
+                    school: "Rajshahi B.B. Hindu Academy School",
+                    location: "Boalia, Rajshahi",
+                    year: "2018",
+                    note: "First exposure to programming — the spark that started it all."
+                }
+            ],
+
+            /* ── PUBLICATIONS ─────────────────────────────── */
+            publications: [
+                {
+                    venue: "Preprint",
+                    title: "Enhancing BiGRU with a KAN Block for Legal Document Classification and Summarization",
+                    authors: "Ahmed Faizul Haque Dhrubo, <strong>Souvik Pramanik</strong>, Most. Aysha Siddika Sumona, Mohsin Sajjad et al.",
+                    year: "May 2026",
+                    links: [{ label: "View", url: "https://doi.org/10.48550/arXiv.2606.00116" }],
+                    note: ""
+                },
+                {
+                    venue: "Preprint",
+                    title: "MultiSoc-4D: A Benchmark for Diagnosing Instruction-Induced Label Collapse in Closed-Set LLM Annotation of Bengali Social Media",
+                    authors: "<strong>Souvik Pramanik</strong>, Sm Riaz Rahman Antu, Shak Mohammad Abyad, Md. Shahriar Hussain et al.",
+                    year: "May 2026",
+                    links: [{ label: "View", url: "https://doi.org/10.48550/arXiv.2605.06940" }],
+                    note: ""
+                },
+                {
+                    venue: "Preprint",
+                    title: "Bengali MemeNet (BMN): A Multimodal Framework for Sentiment Classification of Bengali Memes",
+                    authors: "<strong>Souvik Pramanik</strong>, Sm Riaz Rahman Antu, Atikul Islam Munna, Mohsin Sajjad et al.",
+                    year: "Jan 2026",
+                    links: [{ label: "View", url: "https://doi.org/10.13140/RG.2.2.15836.65921" }],
+                    note: ""
+                },
+                {
+                    venue: "Preprint",
+                    title: "Bridging the Credit Gap: A Hybrid Decentralized Framework for Thin-File Borrowers using Stacking Ensembles and Blockchain Oracles",
+                    authors: "Masum Billah, A.F.M. Khairul Amin, Tahmid Anjum Mozumder, Mohsin Sajjad et al.",
+                    year: "Apr 2026",
+                    links: [{ label: "View", url: "https://doi.org/10.13140/RG.2.2.12370.93128" }],
+                    note: ""
+                },
+                {
+                    venue: "IEEE SATC 2026",
+                    title: "Advancing Sentiment Analysis with BERT: A Comparative Evaluation Against Machine Learning and Deep Learning Techniques",
+                    authors: "Saif Mahmood Chowdhury, Tasfin Rahat Ratul, Arif Rahman, Mohsin Sajjad et al.",
+                    year: "Mar 2026",
+                    links: [{ label: "View", url: "https://doi.org/10.1109/SATC69565.2026.11542271" }],
+                    note: "Conference"
+                },
+                {
+                    venue: "IEEE SATC 2026",
+                    title: "Compact Vision Transformers for BFMRX Bone-Fracture Detection",
+                    authors: "Jonayed Hossain, Kazi Refat Ullah, Akib Sadman Nafi, Mohammad Qayum et al.",
+                    year: "Mar 2026",
+                    links: [{ label: "View", url: "https://doi.org/10.1109/SATC69565.2026.11542386" }],
+                    note: "Conference"
+                },
+                {
+                    venue: "IEEE SATC 2026",
+                    title: "Blockchain-Based Document Verification System Using Ethereum Smart Contracts and Cryptographic Hashing",
+                    authors: "Md. Mazenul Islam, Akib Sadman Nafi, Kazi Refat Ullah, Mohammad Qayum et al.",
+                    year: "Mar 2026",
+                    links: [{ label: "View", url: "https://doi.org/10.1109/SATC69565.2026.11542278" }],
+                    note: "Conference"
+                },
+                {
+                    venue: "IEEE SATC 2026",
+                    title: "Macro-to-TWh: A Log-Stabilized Benchmark of 21 Supervised Regressors for Country-Level Primary Energy Consumption Prediction",
+                    authors: "Jim Howlader, Abir Bin Faruque, Maidul Islam, Mohammad Qayum et al.",
+                    year: "Mar 2026",
+                    links: [{ label: "View", url: "https://doi.org/10.1109/SATC69565.2026.11542520" }],
+                    note: "Conference"
+                },
+                {
+                    venue: "IEEE SATC 2026",
+                    title: "Bone Fracture Detection Using Vision Transformers: A Comparative Analysis of PiT and CaFormer Models",
+                    authors: "Atikul Islam Munna, Md. Ibrahim Khalil, Assaduzzaman Munna, Mohammad Qayum et al.",
+                    year: "Mar 2026",
+                    links: [{ label: "View", url: "https://doi.org/10.1109/SATC69565.2026.11542322" }],
+                    note: "Conference"
+                },
+                {
+                    venue: "IEEE SATC 2026",
+                    title: "Leveraging Vision-Language Models for Movie Genre Prediction: A Comparative Analysis of BLIP, CLIP, ViLT, and FLaVA",
+                    authors: "Shak Mohammad Abyad, Md. Ibrahim Khalil, Sm Riaz Rahman Antu, Mohammad Qayum et al.",
+                    year: "Mar 2026",
+                    links: [{ label: "View", url: "https://doi.org/10.1109/SATC69565.2026.11542319" }],
+                    note: "Conference"
+                },
+                {
+                    venue: "Preprint",
+                    title: "Balancing Performance and Sustainability in Vision-Language Models for Hateful Meme Detection with Code-Carbon Emission Analysis",
+                    authors: "Ekra Bintay Ismail, Atif Shariar, Yeash Zuddan Ali, Mohsin Sajjad et al.",
+                    year: "Mar 2026",
+                    links: [{ label: "View", url: "https://doi.org/10.13140/RG.2.2.18608.01282" }],
+                    note: ""
+                },
+                {
+                    venue: "ICSADL 2026",
+                    title: "Feature Engineering and Ensemble Classifiers for Robust Cardiovascular Disease Detection",
+                    authors: "Sm Riaz Rahman Antu, Atikul Islam Munna, Md. Ibrahim Khalil, Ahmed Faizul Haque Dhrubo et al.",
+                    year: "Feb 2026",
+                    links: [{ label: "View", url: "https://doi.org/10.1109/ICSADL67539.2026.11451998" }],
+                    note: "Conference"
+                },
+                {
+                    venue: "Preprint",
+                    title: "Beyond Classical Limitations: Improving Bone Fracture Classification in Data-Constrained Regimes via Quantum-Classical Synergy",
+                    authors: "Partho Paul, Md. Toufique Raihan, Habib Foysal, Mohsin Sajjad et al.",
+                    year: "Oct 2025",
+                    links: [{ label: "View", url: "https://doi.org/10.13140/RG.2.2.29350.79687" }],
+                    note: ""
+                }
+            ],
+
+            projects: [
+                {
+                    title: "Bengali Sentiment Analysis on Natok & Review Datasets",
+                    desc: "Conducted comprehensive sentiment classification experiments on Bengali drama and review datasets using traditional machine learning and transformer-based models. Evaluated BanglaBERT, BERT, RoBERTa, DeBERTa, XLNet, ALBERT, and DistilBERT while applying data preprocessing, augmentation, and hyperparameter optimization to improve performance.",
+                    tags: ["Python", "PyTorch", "Transformers", "BanglaBERT", "NLP"],
+                    link: "https://github.com/pramanik-souvik/bengali-natok-review"
+                },
+                {
+                    title: "Multimodal Hateful Meme Detection",
+                    desc: "Developed multimodal classification pipelines that combine textual and visual information for hateful meme detection. Explored fusion strategies and vision-language models while measuring environmental impact through CodeCarbon-based carbon emission tracking.",
+                    tags: ["Python", "PyTorch", "Multimodal AI", "Vision-Language Models", "CodeCarbon"],
+                    link: "https://github.com/pramanik-souvik/multimodal-facebook-hateful-meme-detection"
+                },
+                {
+                    title: "Multi-Threaded HTTP Server in C++",
+                    desc: "Built a lightweight HTTP server from scratch using modern C++17. Implemented socket programming, request handling, static file serving, concurrency management, and a custom thread-pool architecture to support efficient multi-client communication.",
+                    tags: ["C++17", "Networking", "Multithreading", "Socket Programming", "Systems"],
+                    link: "https://github.com/pramanik-souvik/simple-http-server"
+                }
+            ],
+
+            techStack: {
+                "Core": ["Python", "Linux", "Git", "VS Code"],
+                "Data & Vis.": ["NumPy", "Pandas", "Matplotlib", "Seaborn", "Plotly"],
+                "Machine Learning": ["Scikit-learn", "PyTorch", "TensorFlow", "Keras"],
+                "LLMs & NLP": ["Hugging Face", "LangChain", "Prompt Engineering"],
+                "Backend & APIs": ["FastAPI", "REST APIs"],
+                "MLOps": ["Docker", "DVC", "Jupyter", "Google Colab"],
+                "Acceleration": ["CUDA", "GPU Training", "TPU"],
+                "Quantum ML": ["Qiskit", "PennyLane", "Cirq"],
+                "Web": ["HTML", "CSS", "JavaScript"]
+            }
+        };
+
+        /* ═══════════════════════════════════════════════════
+           RENDER
+        ═══════════════════════════════════════════════════ */
+        function render() {
+            /* photo */
+            const photo = document.getElementById("hero-photo");
+            if (photo && DATA.hero.picture) photo.src = DATA.hero.picture;
+
+            /* CV links */
+            ["cv-link", "cv-footer"].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.href = DATA.contact.cv;
+            });
+
+            /* email */
+            const emailEl = document.getElementById("email-link");
+            if (emailEl) {
+                emailEl.href = "mailto:" + DATA.contact.email;
+                emailEl.textContent = DATA.contact.email;
+            }
+
+            /* socials */
+            const sc = DATA.contact.socials;
+            [["s-github", sc.github], ["s-linkedin", sc.linkedin], ["s-twitter", sc.twitter],
+            ["s-reddit", sc.reddit], ["s-discord", sc.discord]].forEach(([cls, url]) => {
+                if (url) document.querySelectorAll("." + cls).forEach(el => el.href = url);
+            });
+
+            /* experience */
+            const expList = document.getElementById("exp-list");
+            if (expList) {
+                expList.innerHTML = DATA.experience.map(e =>
+                    `<div class="exp-item">
+        <div class="exp-title">${e.title}</div>
+        <div class="exp-body">${e.details}</div>
+      </div>`
+                ).join("");
+            }
+
+            /* education */
+            const eduList = document.getElementById("edu-list");
+            if (eduList) {
+                eduList.innerHTML = DATA.education.map(e =>
+                    `<div class="edu-item">
+        <div class="edu-degree">${e.degree}</div>
+        <div class="edu-meta">${e.school} &middot; ${e.location} &middot; ${e.year}</div>
+        <div class="edu-summary">${e.note}</div>
+      </div>`
+                ).join("");
+            }
+
+            /* publications */
+            const pubList = document.getElementById("pub-list");
+            if (pubList) {
+                if (!DATA.publications || DATA.publications.length === 0) {
+                    pubList.innerHTML = `<p style="font-size:.9rem;color:var(--ink-3);padding:20px 0 20px 20px;border-left:2px solid var(--rule)">
+        Publications coming soon.
+      </p>`;
+                } else {
+                    pubList.innerHTML = DATA.publications.map(p => {
+                        const noteHTML = p.note
+                            ? `<span class="pub-note">${p.note}</span>` : "";
+                        const linksHTML = p.links.map(l =>
+                            `<a class="pub-link" href="${l.url}">
+            <i class="fas fa-${l.label === 'arXiv' ? 'file-alt' : l.label === 'PDF' ? 'file-pdf' : l.label === 'Code' ? 'code' : 'external-link-alt'}" style="font-size:.65rem"></i>
+            ${l.label}
+          </a>`
+                        ).join("");
+                        return `<div class="pub-item">
+          <span class="pub-venue">${p.venue}</span> <span style="font-size:.75rem;color:var(--ink-3)">${p.year}</span>${noteHTML}
+          <div class="pub-title">${p.title}</div>
+          <div class="pub-authors">${p.authors}</div>
+          <div class="pub-links">${linksHTML}</div>
+        </div>`;
+                    }).join("");
+                }
+            }
+
+            /* projects */
+            const projList = document.getElementById("project-list");
+            if (projList) {
+                projList.innerHTML = DATA.projects.map(p =>
+                    `<div class="project-item">
+        <div class="project-body">
+          <div class="project-title">${p.title}
+            <a href="${p.link}" style="font-size:.75rem;font-weight:500;color:var(--ink-3);margin-left:10px">
+              View <i class="fas fa-external-link-alt" style="font-size:.65rem"></i>
+            </a>
+          </div>
+          <div class="project-desc">${p.desc}</div>
+          <div class="project-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+        </div>
+      </div>`
+                ).join("");
+            }
+
+            /* tech stack */
+            const techTable = document.getElementById("tech-table");
+            if (techTable) {
+                techTable.innerHTML = Object.entries(DATA.techStack).map(([cat, items]) =>
+                    `<div class="tech-row">
+        <div class="tech-cat">${cat}</div>
+        <div class="tech-pills">${items.map(i => `<span class="pill">${i}</span>`).join("")}</div>
+      </div>`
+                ).join("");
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════
+           NAV — active on scroll
+        ═══════════════════════════════════════════════════ */
+        function initNav() {
+            const burger = document.getElementById("burger");
+            const mobileNav = document.getElementById("mobileNav");
+            const allLinks = document.querySelectorAll(".nav-link");
+            const sections = document.querySelectorAll("section[id]");
+
+            burger.addEventListener("click", () => {
+                burger.classList.toggle("open");
+                mobileNav.classList.toggle("open");
+            });
+
+            /* close on link tap */
+            allLinks.forEach(a => {
+                a.addEventListener("click", () => {
+                    burger.classList.remove("open");
+                    mobileNav.classList.remove("open");
+                });
+            });
+
+            /* highlight active section */
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const id = entry.target.id;
+                    allLinks.forEach(a =>
+                        a.classList.toggle("active", a.getAttribute("href") === "#" + id)
+                    );
+                });
+            }, { threshold: 0.3, rootMargin: "-60px 0px -30% 0px" });
+
+            sections.forEach(s => io.observe(s));
+        }
+
+        /* ═══════════════════════════════════════════════════
+           CONTACT FORM
+        ═══════════════════════════════════════════════════ */
+        function initForm() {
+            document.getElementById("contactForm").addEventListener("submit", e => {
+                e.preventDefault();
+                const email = document.getElementById("cemail").value;
+                const subject = document.getElementById("csubject").value || "Message from " + email;
+                const message = document.getElementById("cmessage").value;
+                window.location.href =
+                    `mailto:${DATA.contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+            });
+        }
+
+        /* ═══════════════════════════════════════════════════
+           BOOT
+        ═══════════════════════════════════════════════════ */
+        document.addEventListener("DOMContentLoaded", () => {
+            render();
+            initNav();
+            initForm();
+        });
+    </script>
+</body>
+
+</html>
